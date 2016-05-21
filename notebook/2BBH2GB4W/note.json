@@ -1,0 +1,169 @@
+{
+  "paragraphs": [
+    {
+      "text": "//Using of spark context (sc)\n\nval textfile\u003dsc.textFile(sys.env(\"ZEPPELIN_HOME\")+\"/readme.md\")\nval counts \u003d textfile.flatMap(line \u003d\u003e line.split(\" \"))\n                 .map(word \u003d\u003e (word, 1))\n                 .reduceByKey(_ + _)\nval top15\u003dcounts.sortBy(_._2, false)take(15)\ntop15.foreach(println)",
+      "dateUpdated": "Jan 24, 2016 6:46:13 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1453617564972_1076123845",
+      "id": "20160124-063924_1251102938",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "textfile: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:31\ncounts: org.apache.spark.rdd.RDD[(String, Int)] \u003d ShuffledRDD[4] at reduceByKey at \u003cconsole\u003e:33\ntop15: Array[(String, Int)] \u003d Array((\"\",159), (```,20), (the,12), (mvn,12), (you,11), (package,10), (version,10), (to,10), (and,10), (clean,9), (can,8), (with,8), (Spark,8), (#,8), (export,7))\n(,159)\r\n(```,20)\r\n(the,12)\r\n(mvn,12)\r\n(you,11)\r\n(package,10)\r\n(version,10)\r\n(to,10)\r\n(and,10)\r\n(clean,9)\r\n(can,8)\r\n(with,8)\r\n(Spark,8)\r\n(#,8)\r\n(export,7)\r\n"
+      },
+      "dateCreated": "Jan 24, 2016 6:39:24 AM",
+      "dateStarted": "Jan 24, 2016 6:46:14 AM",
+      "dateFinished": "Jan 24, 2016 6:47:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//Using of spark sql context (sqlContext)\n\nval df\u003dcounts.toDF(\"word\",\"count\")\ndf.registerTempTable(\"wordCount\")\nval words \u003d sqlContext.sql(\"SELECT word,count FROM wordCount WHERE count \u003e\u003d 4 AND count \u003c\u003d 10\")\n\nwords.show()",
+      "dateUpdated": "Jan 24, 2016 6:45:30 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1453617641059_-2013551029",
+      "id": "20160124-064041_2022971764",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "df: org.apache.spark.sql.DataFrame \u003d [word: string, count: int]\nwords: org.apache.spark.sql.DataFrame \u003d [word: string, count: int]\n+--------------------+-----+\n|                word|count|\n+--------------------+-----+\n|             package|   10|\n|              export|    7|\n|             version|   10|\n|               build|    7|\n|./conf/zeppelin-e...|    4|\n|                  is|    5|\n|            profiles|    6|\n|                 set|    4|\n|                ####|    5|\n|                 can|    8|\n|             apt-get|    5|\n|                with|    8|\n|            specific|    4|\n|         Interpreter|    4|\n|                MapR|    4|\n|                   *|    6|\n|               spark|    4|\n|              -Pyarn|    4|\n|                sudo|    7|\n|                  To|    4|\n+--------------------+-----+\nonly showing top 20 rows\n\r\n"
+      },
+      "dateCreated": "Jan 24, 2016 6:40:41 AM",
+      "dateStarted": "Jan 24, 2016 6:45:30 AM",
+      "dateFinished": "Jan 24, 2016 6:45:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nSELECT word,count FROM wordCount WHERE count \u003e\u003d 4 AND count \u003c\u003d 10 order by count",
+      "dateUpdated": "Jan 24, 2016 6:45:35 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1453617718583_1651721880",
+      "id": "20160124-064158_910376568",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "word\tcount\nInterpreter\t4\nset\t4\nspark\t4\nspecific\t4\n./conf/zeppelin-env.sh\t4\nby\t4\nsupport\t4\n-Pspark-1.5\t4\nZeppelin\t4\n-Phadoop-2.4\t4\n-Pyarn\t4\nHadoop\t4\n(optional)\t4\nMapR\t4\nTo\t4\n###\t5\napt-get\t5\non\t5\nis\t5\nor\t5\n####\t5\nbe\t5\nfor\t5\nIf\t5\nprofiles\t6\n#####\t6\n*\t6\ninstall\t6\n-DskipTests\t6\na\t6\nbuild\t7\nof\t7\nexport\t7\nsudo\t7\ncan\t8\nwith\t8\n#\t8\nSpark\t8\nclean\t9\npackage\t10\nversion\t10\nto\t10\nand\t10\n"
+      },
+      "dateCreated": "Jan 24, 2016 6:41:58 AM",
+      "dateStarted": "Jan 24, 2016 6:45:35 AM",
+      "dateFinished": "Jan 24, 2016 6:45:35 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark  \nimport pandas as pd\nimport numpy as np\npdf \u003d pd.DataFrame(np.random.randint(0,50,size\u003d(5, 4)), columns\u003dlist(\u0027ABCD\u0027))\nprint(pdf)\ndf\u003dsqlContext.createDataFrame(pdf)\nprint(df.take(3))",
+      "dateUpdated": "Jan 24, 2016 6:45:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1453617739193_1265834057",
+      "id": "20160124-064219_1476097879",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "    A   B   C   D\n0  11  22  48  24\n1  35  46  16  49\n2  31  39   5  25\n3   2  45  24   8\n4   5  29   6  22\n[Row(A\u003d11, B\u003d22, C\u003d48, D\u003d24), Row(A\u003d35, B\u003d46, C\u003d16, D\u003d49), Row(A\u003d31, B\u003d39, C\u003d5, D\u003d25)]\n"
+      },
+      "dateCreated": "Jan 24, 2016 6:42:19 AM",
+      "dateStarted": "Jan 24, 2016 6:45:38 AM",
+      "dateFinished": "Jan 24, 2016 6:45:41 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1453617762871_451736033",
+      "id": "20160124-064242_1876064050",
+      "dateCreated": "Jan 24, 2016 6:42:42 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Spark Example",
+  "id": "2BBH2GB4W",
+  "angularObjects": {
+    "2BA7S2E48": [],
+    "2BC2RDM3Z": [],
+    "2B9PNW7QW": [],
+    "2BAGXS8NV": [],
+    "2B9MGWSGW": [],
+    "2BA2GWURV": [],
+    "2BCFANQAD": [],
+    "2BBY1VZKN": [],
+    "2B8T3BBNE": [],
+    "2BBE56WMD": [],
+    "2BATDWABB": [],
+    "2BB5CMJNN": [],
+    "2BAMR2KM4": [],
+    "2B9EVBEED": []
+  },
+  "config": {},
+  "info": {}
+}
