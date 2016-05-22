@@ -1,6 +1,6 @@
-One notebook is by-default we get when the Spark and zepplin set-up is installed.
+First notebook is by-default we get when the Spark and zeppelin set-up is installed.
 
-Other is of Death-cause-detector which is formed by analyzing the death cause datasets http://catalog.data.gov/dataset/leading-causes-of-death-by-zip-code-1999-2013
+Second one i.e. 2BN4U3YA5 uses datasets from http://catalog.data.gov/dataset/leading-causes-of-death-by-zip-code-1999-2013 and answers the questions.
 
 
 ##### Importing specific notebooks:
