@@ -16,8 +16,7 @@ Feature:
 ## Getting Started
 
 ### Before Build
-If you don't have requirements prepared, install it. 
-(The installation method may vary according to your environment, example is for Ubuntu.)
+If all the above mentioned requirements are not installed, then follow followin steps(for UBUNTU ) :
 
 ```
 sudo apt-get update
