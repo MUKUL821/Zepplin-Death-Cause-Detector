@@ -78,3 +78,7 @@ export HADOOP_HOME=...
     ./bin/zeppelin-daemon.sh start
 
     Browse localhost:8080 in your browser.
+### Import Notebook
+
+```
+Steps for importing Notebook note.json in local system and viewing the result are given in Notebook folder README.MD file ```
