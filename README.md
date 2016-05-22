@@ -3,9 +3,9 @@ Using Zeppelin and Spark
 
 **Zeppelin**, a web-based notebook that enables interactive data analytics. You can make beautiful data-driven, interactive and collaborative documents with SQL, Scala and more.
 
-Core feature:
+Feature:
    * Web based notebook style editor.
-   * Built-in Apache Spark support
+   * It is built-in Apache Spark support
 
 ## Requirements
  * Java 1.7
@@ -32,9 +32,6 @@ sudo tar -zxf apache-maven-3.3.3-bin.tar.gz -C /usr/local/
 sudo ln -s /usr/local/apache-maven-3.3.3/bin/mvn /usr/local/bin/mvn
 ```
 
-_Notes:_ 
- - Ensure node is installed by running `node --version`  
- - Ensure maven is running version 3.1.x or higher with `mvn -version`
 
 ### Build
 Steps to clone Zepplin from starting :
@@ -43,7 +40,6 @@ Steps to clone Zepplin from starting :
 mvn clean package -Pspark-1.6 -Phadoop-2.4 -Ppyspark
 
 .....
-
 
 #### Ignite Interpreter
 
@@ -72,7 +68,7 @@ Same for ```zeppelin-site.xml```.)
 
 Without SPARK_HOME and HADOOP_HOME, Zeppelin uses embedded Spark and Hadoop binaries that you have specified with mvn build option.
 If you want to use system provided Spark and Hadoop, export SPARK_HOME and HADOOP_HOME in zeppelin-env.sh
-You can use any supported version of spark without rebuilding Zeppelin.
+
 
 ```
 # ./conf/zeppelin-env.sh
@@ -82,15 +78,6 @@ export HADOOP_HOME=...
 
 
 ### Run
-    ./bin/zeppelin-daemon.sh start
+   ** ./bin/zeppelin-daemon.sh start**
 
-    browse localhost:8080 in your browser.
-
-
-For configuration details check __./conf__ subdirectory.
-
-### Package
-To package the final distribution including the compressed archive, run:
-
-      mvn clean package -Pbuild-distr
-
+    Browse localhost:8080 in your browser.
