@@ -47,37 +47,35 @@ mvn clean package -Pspark-1.6 -Phadoop-2.4 -Ppyspark
 mvn clean package -Dignite.version=1.1.0-incubating -DskipTests
 ```
 
-#### Scalding Interpreter
+##### Scalding Interpreter
 
 ```
 mvn clean package -Pscalding -DskipTests
 ```
 
-### Configure
+#####Configure
 If you wish to configure Zeppelin option (like port number), configure the following files:
 
 ```
 ./conf/zeppelin-env.sh
 ./conf/zeppelin-site.xml
 ```
-(You can copy ```./conf/zeppelin-env.sh.template``` into ```./conf/zeppelin-env.sh```. 
-Same for ```zeppelin-site.xml```.)
 
 
-#### Setting SPARK_HOME and HADOOP_HOME
+##### Setting SPARK_HOME and HADOOP_HOME
 
 Without SPARK_HOME and HADOOP_HOME, Zeppelin uses embedded Spark and Hadoop binaries that you have specified with mvn build option.
 If you want to use system provided Spark and Hadoop, export SPARK_HOME and HADOOP_HOME in zeppelin-env.sh
 
 
 ```
-# ./conf/zeppelin-env.sh
+##### ./conf/zeppelin-env.sh
 export SPARK_HOME=...
 export HADOOP_HOME=...
 ```
 
 
 ### Run
-   ** ./bin/zeppelin-daemon.sh start**
+    ./bin/zeppelin-daemon.sh start
 
     Browse localhost:8080 in your browser.
