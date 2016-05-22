@@ -37,23 +37,22 @@ sudo ln -s /usr/local/apache-maven-3.3.3/bin/mvn /usr/local/bin/mvn
 Steps to clone Zepplin from starting :
 ```
 # basic build
+
 mvn clean package -Pspark-1.6 -Phadoop-2.4 -Ppyspark
 
-.....
-
-#### Ignite Interpreter
-
+```
+### Ignite Interpreter
 ```
 mvn clean package -Dignite.version=1.1.0-incubating -DskipTests
 ```
 
-##### Scalding Interpreter
+### Scalding Interpreter
 
 ```
 mvn clean package -Pscalding -DskipTests
 ```
 
-#####Configure
+###Configure
 If you wish to configure Zeppelin option (like port number), configure the following files:
 
 ```
@@ -62,14 +61,14 @@ If you wish to configure Zeppelin option (like port number), configure the follo
 ```
 
 
-##### Setting SPARK_HOME and HADOOP_HOME
+### Setting SPARK_HOME and HADOOP_HOME
 
 Without SPARK_HOME and HADOOP_HOME, Zeppelin uses embedded Spark and Hadoop binaries that you have specified with mvn build option.
 If you want to use system provided Spark and Hadoop, export SPARK_HOME and HADOOP_HOME in zeppelin-env.sh
 
 
 ```
-##### ./conf/zeppelin-env.sh
+### ./conf/zeppelin-env.sh
 export SPARK_HOME=...
 export HADOOP_HOME=...
 ```
