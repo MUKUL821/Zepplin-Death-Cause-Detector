@@ -5,7 +5,7 @@ Other is of Death-cause-detector which is formed by analyzing the death cause da
 
 ##### Importing specific notebooks:
 Copy the "json" link URL from the table below and paste it into Zeppelin's import from URL tool.
-![Import UI](/screenshots/import.png?raw=true)
+![Import UI](https://github.com/MUKUL821/Zepplin-Death-Cause-Detector/blob/master/screenshots/import.PNG)
 
 ##### Adding notebooks:
 You can add notebooks by making Github pull request, but we request you also update the table below by adding a record for your notebook. To generate the 'view' link for the notebook:
